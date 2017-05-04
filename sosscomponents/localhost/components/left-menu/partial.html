@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-3">
+        <p class="lead">Menus</p>
+        <div class="list-group" id="idProdCategories">
+            <a v-for="cat in categories" :href="'#/home?cat=' + cat.name" class="list-group-item">{{cat.name}}</a>
+        </div>
+    </div>
+    
+    <div class="col-md-9" soss-component="soss-routes">
+ 
+    </div>
+
+</div>

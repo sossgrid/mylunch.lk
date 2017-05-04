@@ -1,0 +1,53 @@
+{
+    "components": {
+        "soss-routes": {
+            "type":"shell",
+            "location":"shell"
+        },
+        "soss-routes-vue": {
+            "type":"shell",
+            "location":"shell"
+        },
+        "config": {
+            "type":"shell",
+            "location":""
+        },
+        "partial-home": {
+            "type":"partial",
+            "location":"domain/partials"
+        },
+        "launcher": {
+            "type":"component",
+            "location":"domain"
+        },
+        "top-menu": {
+            "type":"component",
+            "location":"components"
+        },
+        "left-menu": {
+            "type":"component",
+            "location":"components"
+        },
+        "footer": {
+            "type":"component",
+            "location":"components"
+        },
+        "product-handler": {
+            "type":"service",
+            "location":"domain/handlers"
+        }
+    },
+    "loader":{
+        "onLoad": ["product-handler", "soss-routes","soss-routes-vue", "config","launcher-web"]
+    },
+    "description":{
+        "title": "SOSS Delivery",
+        "author":"SOSSGRID Foundation",
+        "version":"0.1 - alpha"
+    },
+    "firewall" : {
+        "defaultBlock" : "",
+        "guest" : [],
+        "admin": []
+    }      
+}

@@ -1,0 +1,108 @@
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <!--<a class="navbar-brand" href="#"><b>Simply</b> <i>FOOD</i></a>-->
+    <img src="img/cart.png" width="40" height="40"/><a class="navbar-brand" href="#/home"><i>Simply</i> <b class="headerBold">Food</b></a>
+</div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="#/about">About</a>
+        </li>
+        <li>
+            <a href="#/service">Services</a>
+        </li>
+        <li>
+            <a href="#/contact">Contact</a>
+        </li>
+        
+    </ul>
+        <ul class="nav navbar-nav navbar-right" >
+                        <li><a href="#/cart" id="header-cart">({{ itemcount }}) Cart</a></li>
+                        
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
+                            <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li id="header-login" >
+                                    <div v-if="isLogin">
+                                        <div class="navbar-content" >
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <img v-bind:src="profileimage"
+                                                        alt="Alternate Text" class="img-responsive" />
+                                                    <p class="text-center small">
+                                                        <a href="http://en.gravatar.com/">Change Photo</a></p>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <span>{{ name }}</span>
+                                                    <p class="text-muted small">
+                                                        {{ email }}</p>
+                                                    <div class="divider">
+                                                    </div>
+                                                    <a href="#" class="btn btn-primary btn-sm active">View Profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="navbar-footer">
+                                            <div class="navbar-footer-content">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <a href="#" class="btn btn-default btn-sm">Change Passowrd</a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <a href="http://www.jquery2dotnet.com" class="btn btn-default btn-sm pull-right">Sign Out</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    <div v-else>
+                                        <div class="navbar-content" >
+                                        <div class="row">
+                                                <div class="col-md-12">
+                                                    Login via
+                                                    <div class="social-buttons">
+                                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                                    </div>
+                                                    or
+                                                    <form class="form" role="form"  v-el:custom  @submit.prevent="login" id="login-nav">
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                                <input v-model="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                                <input v-model="password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                                <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                <input type="checkbox"> keep me logged-in
+                                                                </label>
+                                                            </div>
+                                                    </form>
+                                                </div>
+                                                <div class="navbar-footer">
+                                                <div class="vbar-footer-content text-center">
+                                                    New here ? <a href="#/user"><b>Join Us</b></a>
+                                                </div>
+                                                </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+</div>
+<!-- /.navbar-collapse -->
