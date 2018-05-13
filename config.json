@@ -1,7 +1,7 @@
 {
     "variables":{
-        "COMPONENT_LOCATION":"/var/www/html/sosscomponents",
-        "MEDIA_FOLDER":"/var/media",
+        "COMPONENT_LOCATION":"G:/Open Source Projects/mylunch.lk/sosscomponents",
+        "MEDIA_FOLDER":"E:/media",
         "OS_URL":"http://localhost:9000/data"
     },
     "alias":{

@@ -100,26 +100,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 var lng = defaultLatLng.lng;
                 $("#idLatLng").val(JSON.stringify(defaultLatLng));
 
-                marker = new google.maps.Marker({
-                    position: {lat: lat, lng: lng},
-                    map: map,
-                    title: 'You are Here',
-                    draggable:true
-                });
+                if (!marker){
+                    marker = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: map,
+                        title: 'You are Here',
+                        draggable:true
+                    });
 
-                google.maps.event.addListener(marker, 'dragstart', function(evt) 
-                {
-                    markerOldPosition = this.getPosition();
-                    
-                });
+                    google.maps.event.addListener(marker, 'dragstart', function(evt) 
+                    {
+                        markerOldPosition = this.getPosition();
+                        
+                    });
 
-                google.maps.event.addListener(marker, 'dragend', function(evt) 
-                {
-                    markerNewPosition = this.getPosition();
-                    defaultLatLng.lat = evt.latLng.lat();
-                    defaultLatLng.lng = evt.latLng.lng();
-                    $("#idLatLng").val(JSON.stringify(defaultLatLng));
-                });
+                    google.maps.event.addListener(marker, 'dragend', function(evt) 
+                    {
+                        markerNewPosition = this.getPosition();
+                        defaultLatLng.lat = evt.latLng.lat();
+                        defaultLatLng.lng = evt.latLng.lng();
+                        $("#idLatLng").val(JSON.stringify(defaultLatLng));
+                    });
+                }else {
+                    marker.setPosition(new google.maps.LatLng(lat, lng));
+                }
 
                 map.setZoom(17);
                 map.panTo(marker.position);

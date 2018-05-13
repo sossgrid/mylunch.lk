@@ -121,13 +121,11 @@ EOT;
             $detailStr .="<tr><td>". $detail->productid ."</td><td>" .$uom . ". ". $detail->unitprice ."</td><td>".$detail->qty."</td><td>". $uom . ". " . ($detail->unitprice * $detail->qty )."</td></tr>";
         }
 
-
-        $body = str_replace("@@ORDERID@@", $detailStr, $orderId);
+        $body = str_replace("@@ORDERID@@", $orderId, $body);
         $body = str_replace("@@DETAILS@@", $detailStr, $body);
         $body = str_replace("@@TOTAL@@", $univerasalUom . ". " . (string)$totalBill, $body);
 
         $mail->Body = $body;
-        
         $mail->Send();
 
     }
