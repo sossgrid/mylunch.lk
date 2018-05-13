@@ -1,0 +1,130 @@
+<div class="container" id="idOrderWizard">
+    <div class="row">
+        <div class="board col-md-4 col-md-offset-2">
+            <ul class="nav nav-tabs" >
+                <div class="liner"></div>
+                <li rel-index="0">
+                    <a class="btn">
+                        <span><i class="glyphicon glyphicon-shopping-cart"></i></span>
+                    </a>
+                </li>
+                <li rel-index="1" class="active">
+                    <a class="btn">
+                        <span><i class="glyphicon glyphicon-map-marker"></i></span>
+                    </a>
+                </li>
+                <li rel-index="2">
+                    <a class="btn">
+                        <span><i class="glyphicon glyphicon-euro"></i></span>
+                    </a>
+                </li>
+                <li rel-index="3">
+                    <a class="btn">
+                        <span><i class="glyphicon glyphicon-ok"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row col-md-8">
+        <p v-if="submitErrors" v-for="error in submitErrors" class = "alert alert-danger"> {{error}} </p>
+    </div>
+  <div class="row col-md-8">
+    <form>
+        <div class="form-group col-md-12">
+            <input type="button" class="btn btn-success pull-right" style="margin-bottom:20px;" v-on:click="submit" value ="Submit your information"/>
+        </div>
+      <div class="form-group col-md-12">
+        <label for="exampleInputPassword1">Name *</label>
+        <div class="input-group" v-if="deliveryHistory.length > 1">
+            <input type="text" class="form-control" v-model="profile.name">
+            <span class="input-group-addon btn btn-primary" v-on:click="showDeliveryHistory()">Delivery History</span>
+        </div>
+        <input type="text" v-if="deliveryHistory.length <= 1" class="form-control" v-model="profile.name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="exampleInputPassword1">Contact Number *</label>
+        <input type="text" class="form-control" v-model="profile.contactno1" maxlength="10">
+      </div>
+      <!--div class="form-group col-md-6">
+        <label for="exampleInputPassword1">Additional Contact Number</label>
+        <input type="text" class="form-control" v-model="profile.contactno2">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="exampleInputPassword1">Email *</label>
+        <input type="text" class="form-control" v-model="profile.email">
+      </div-->
+      <div class="form-group col-md-12">
+        <label for="exampleInputPassword1">Remarks (You can mention additional information such as landmarks)</label>
+        <input type="text" class="form-control" v-model="profile.remarks" maxlength="250">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="exampleInputPassword1">Delivery Address *</label>
+        <textarea class="form-control deliveryAddress" v-model="profile.address.addressline1" style="margin-bottom:10px;" placeholder="Address"></textarea>
+        <!--input type="text" class="form-control deliveryAddress" v-model="profile.address.addressline2" placeholder="Address Line 2"-->
+        <!-- <select style="margin-bottom:10px" class="form-control deliveryAddress" id="textCity" v-model="profile.address.city" placehholder="Pick City">
+            <option v-for="city in cities" v-bind:value="city">{{city}}</option>
+        </select> -->
+
+        <!-- <div class="input-group">
+            <input type="text" class="form-control deliveryAddress" v-model="profile.address.gpspoint" placeholder="GPS Coordinates">
+            <span class="input-group-addon btn btn-primary" v-on:click="getMyLocation()">Get My Location</span>
+        </div> -->
+
+
+      </div>
+        <div class="form-group col-md-12" style="height:300px;">
+            <div id="myLunchMap" style="height:300px;">
+                <div style="left:50%;top:50%;position:absolute;margin-left:-77px;margin-top-27px;text-align:center;">
+                    <img src="assets/img/loading.gif" /><br/>
+                    <label>Loading Google Maps</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <input type="button" class="btn btn-success pull-right" style="margin-bottom:20px;" v-on:click="submit" value ="Submit your information"/>
+        </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="modalOrderHistory" role="dialog"  style="overflow-x: auto;overflow-y: auto;width:100%;color:black;">
+    <div class="modal-dialog" v-on:click="closeModal()">
+        <div class="modal-content" style="overflow-x: auto;overflow-y: auto;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Your Address</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-4 col-lg-12 col-md-4" v-for="histItem in deliveryHistory"  v-on:click="cardClick($event)">
+                    <div class="thumbnail">
+                        <div style="margin-left:20px;">
+                        <div class="form-group">
+                            <h5><b>Delivery Person Name</b></h5>
+                            <h6>{{ histItem.name }}</h6>
+                        </div>
+                        <div class="form-group">
+                            <h5><b>Contact Numbers</b></h5>
+                            <h6>{{ histItem.contactno1 }}</h6>
+                            <h6>{{ histItem.contactno2 }}</h6>
+                        </div>
+                        <div class="form-group">
+                            <h5><b>Address</b></h5>
+                            <h6>{{ histItem.address.addressline1  + ' ' + histItem.address.addressline2 }}</h6>
+                        </div>
+                        <!-- <div class="form-group">
+                            <h5><b>City</b></h5>
+                            <h6>{{ histItem.address.city}}</h6>
+                        </div> -->
+
+                        <div class="form-group" style="text-align:center;margin-left:-20px;">
+                            <a class="btn btn-primary" v-on:click="selectDeliveryLocation(histItem)"><span class="glyphicon glyphicon-ok"></span> Select Address</a>
+                        </div>     
+                        </div>             
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

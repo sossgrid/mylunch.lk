@@ -1,0 +1,37 @@
+<div style="color:black;">
+    <div>
+        <div class="btn-group" role="group" aria-label="..." style="margin: 10px;">
+            <a class="btn btn-primary" href="#/admin">Admin Panel</a>
+            <a class="btn btn-primary" href="#/admin-storesform">New Store</a>
+        </div>
+    </div>
+    <br/><br/><br/>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.phone }}</td>
+        <td>
+            <div class="btn-group pull-right" role="group" aria-label="..." style="margin: 10px;">
+                <a class="btn btn-primary" :href="'#/admin-storesform?storeid=' + item.id"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                <a class="btn btn-primary" :href="'#/admin-productmapper?storeid=' + item.id"><span class="glyphicon glyphicon-pencil"></span> Map Products</a>
+                <a class="btn btn-primary"  v-on:click="deleteStore(item)"> <span class="glyphicon glyphicon-remove"></span> Delete</a>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

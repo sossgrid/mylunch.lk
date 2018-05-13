@@ -1,0 +1,10 @@
+{
+    "variables":{
+        "COMPONENT_LOCATION":"/var/www/html/sosscomponents",
+        "MEDIA_FOLDER":"/var/media",
+        "OS_URL":"http://localhost:9000/data"
+    },
+    "alias":{
+        "localhost":["127.0.0.1"]
+    }
+}
